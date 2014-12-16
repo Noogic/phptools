@@ -2,7 +2,7 @@
     "name": "noogic/tools",
     "description": "A bunch of tools of general use like collections, config readers or template systems.",
     "license": "MIT",
-    "keywords": ["tools, utils, config, template, collection"],
+    "keywords": ["tools", "utils", "config", "template", "collection"],
     "authors": [
         {
             "name": "Joan Morell",
