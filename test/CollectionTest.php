@@ -1,5 +1,4 @@
 <?php
-
 namespace tools;
 
 use mocks\Basic;

@@ -1,5 +1,5 @@
 <?php
-namespace router;
+namespace tools;
 
 
 class Router{
