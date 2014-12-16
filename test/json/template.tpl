@@ -1,0 +1,1 @@
+Example of [@var1] with the second var [@var2]

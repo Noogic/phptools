@@ -1,0 +1,22 @@
+{
+    "name": "noogic/Tools",
+    "description": "A bunch of tools of general use like collections, config readers or template systems.",
+    "license": "MIT",
+    "keywords": ["tools, utils, config, template, collection"],
+    "authors": [
+        {
+            "name": "Joan Morell",
+            "email": "joanmorellandres@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*",
+        "phpdocumentor/phpdocumentor": "2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "noogic\\Tools\\": "src"
+        }
+    }
+}
