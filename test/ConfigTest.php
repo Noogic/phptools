@@ -23,7 +23,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function test_Config_can_be(){
-		$this->assertInstanceOf('\noogic\tools\Config', new Config());
+		$this->assertInstanceOf('\tools\Config', new Config());
 	}
 
 	public function test_Config_can_load_from_json(){
