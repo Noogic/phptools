@@ -1,7 +1,6 @@
 <?php
-namespace noogic\tools;
+namespace tools;
 
-use SebastianBergmann\Exporter\Exception;
 
 class Collection implements \Countable{
 	protected $items = [];
@@ -36,7 +35,7 @@ class Collection implements \Countable{
 		if(array_key_exists($key, $this->items) OR $createOnEmpty)
 			$this->items[$key] = $item;
 		else
-			throw new Exception("Key $key doesn't exists");
+			throw new \Exception("Key $key doesn't exists");
 	}
 
 	public function has($key){

@@ -1,6 +1,6 @@
 <?php
 
-namespace noogic\tools;
+namespace tools;
 
 
 class TemplateTest extends \PHPUnit_Framework_TestCase {

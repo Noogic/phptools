@@ -1,5 +1,5 @@
 <?php
-namespace noogic\router;
+namespace router;
 
 use mocks\Basic;
 

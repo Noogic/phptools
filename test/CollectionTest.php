@@ -1,11 +1,8 @@
 <?php
 
-namespace noogic\tools;
+namespace tools;
 
-
-use Metadata\Tests\Driver\Fixture\B\B;
 use mocks\Basic;
-use SebastianBergmann\Exporter\Exception;
 
 class CollectionTest extends \PHPUnit_Framework_TestCase {
 	protected $collection;

@@ -1,6 +1,6 @@
 <?php
 
-namespace noogic\tools;
+namespace tools;
 
 
 class ConfigTest extends \PHPUnit_Framework_TestCase {
