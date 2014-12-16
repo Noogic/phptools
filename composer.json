@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "noogic\\Tools\\": "src"
+            "noogic\\tools\\": "src"
         }
     }
 }
