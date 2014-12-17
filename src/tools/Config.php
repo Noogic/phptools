@@ -1,6 +1,6 @@
 <?php
 
-namespace tools;
+namespace noogic\tools;
 
 
 class Config {

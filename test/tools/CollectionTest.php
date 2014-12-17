@@ -1,7 +1,7 @@
 <?php
-namespace tools;
+namespace noogic\tools;
 
-use mocks\Basic;
+use noogic\mocks\Basic;
 
 class CollectionTest extends \PHPUnit_Framework_TestCase {
 	protected $collection;
@@ -157,7 +157,15 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 
 	public function test_Collection_hash_each_lambda(){
 		$this->itemsCollection->each(function($item){
-			$this->assertInstanceOf('\mocks\basic', $item);
+			$this->assertInstanceOf('\noogic\mocks\basic', $item);
 		});
+	}
+
+	public function test_Collection_gives_first_element(){
+		$basic = $this->itemsCollection->first();
+		$this->assertInstanceOf('\noogic\mocks\Basic', $basic);
+
+		$basic = $this->collection->first();
+		$this->assertNull($basic);
 	}
 }

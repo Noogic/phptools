@@ -1,5 +1,5 @@
 <?php
-namespace tools;
+namespace noogic\tools;
 
 
 class ConfigTest extends \PHPUnit_Framework_TestCase {
@@ -22,7 +22,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function test_Config_can_be(){
-		$this->assertInstanceOf('\tools\Config', new Config());
+		$this->assertInstanceOf('\noogic\tools\Config', new Config());
 	}
 
 	public function test_Config_can_load_from_json(){

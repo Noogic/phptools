@@ -1,6 +1,6 @@
 <?php
 
-namespace mocks;
+namespace noogic\mocks;
 
 
 class Basic {

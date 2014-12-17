@@ -1,5 +1,5 @@
 <?php
-namespace tools;
+namespace noogic\tools;
 
 
 use SebastianBergmann\Exporter\Exception;

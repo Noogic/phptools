@@ -1,7 +1,7 @@
 <?php
-namespace tools;
+namespace noogic\tools;
 
-use mocks\Basic;
+use noogic\mocks\Basic;
 
 class RouterTest extends \PHPUnit_Framework_TestCase {
 	protected $router;

@@ -1,5 +1,5 @@
 <?php
-namespace tools;
+namespace noogic\tools;
 
 
 class Collection implements \Countable{
@@ -59,5 +59,11 @@ class Collection implements \Countable{
 		foreach($this->items as $value){
 			$fn($value);
 		}
+	}
+
+	public function first(){
+		$values = array_values($this->items);
+
+		return isset($values[0]) ? $values[0] : null;
 	}
 }
