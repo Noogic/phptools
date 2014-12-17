@@ -10,6 +10,7 @@ class Collection implements \Countable{
 		$this->items = $collection ? $collection->get() : [];
 	}
 
+
 	public function add($item, $key = null, $updateOnDuplicate = false){
 		if($key === null)
 			$this->items[] = $item;
@@ -52,5 +53,11 @@ class Collection implements \Countable{
 
 	public function delete($key){
 		unset($this->items[$key]);
+	}
+
+	public function each($fn){
+		foreach($this->items as $value){
+			$fn($value);
+		}
 	}
 }

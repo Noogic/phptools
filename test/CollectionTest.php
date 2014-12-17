@@ -5,9 +5,18 @@ use mocks\Basic;
 
 class CollectionTest extends \PHPUnit_Framework_TestCase {
 	protected $collection;
+	protected $itemsCollection;
+	protected $items;
 
 	public function setUp(){
 		$this->collection = new Collection();
+		$this->itemsCollection = new Collection();
+
+		$this->items = ['a' => new Basic(1), 'b' => new Basic(2), 'c' => new Basic(3)];
+
+		foreach ($this->items as $key => $value) {
+			$this->itemsCollection->add($value, $key);
+		}
 	}
 
 
@@ -142,13 +151,13 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function test_Collection_can_be_created_with_another_collection(){
-		$items = ['a' => new Basic(1), 'b' => new Basic(2)];
+		$collection = new Collection($this->itemsCollection);
+		$this->assertSame($collection->get(), $this->itemsCollection->get());
+	}
 
-		foreach ($items as $key => $value) {
-			$this->collection->add($value, $key);
-		}
-
-		$collection = new Collection($this->collection);
-		$this->assertSame($this->collection->get(), $collection->get());
+	public function test_Collection_hash_each_lambda(){
+		$this->itemsCollection->each(function($item){
+			$this->assertInstanceOf('\mocks\basic', $item);
+		});
 	}
 }
