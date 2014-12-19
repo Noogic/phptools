@@ -66,4 +66,19 @@ class Collection implements \Countable{
 
 		return isset($values[0]) ? $values[0] : null;
 	}
+
+	public function random(){
+		return $this->items[array_rand($this->items)];
+	}
+
+	public function randomCallback($fn){
+		$items = [];
+		foreach ($this->items as $key => $value) {
+			$res = $fn($value);
+			if($res)
+				$items[$key] = $res;
+		}
+
+		return $items[array_rand($items)];
+	}
 }
