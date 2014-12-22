@@ -56,8 +56,8 @@ class Collection implements \Countable{
 	}
 
 	public function each($fn){
-		foreach($this->items as $value){
-			$fn($value);
+		foreach($this->items as $key => $value){
+			$fn($key, $value);
 		}
 	}
 
