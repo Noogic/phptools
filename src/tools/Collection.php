@@ -75,10 +75,11 @@ class Collection implements \Countable{
 		$items = [];
 		foreach ($this->items as $key => $value) {
 			$res = $fn($value);
-			if($res)
+			if($res) {
 				$items[$key] = $res;
+			}
 		}
 
-		return $items[array_rand($items)];
+		return count($items) ? $items[array_rand($items)] : null;
 	}
 }
