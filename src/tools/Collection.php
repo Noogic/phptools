@@ -2,7 +2,7 @@
 namespace noogic\tools;
 
 
-class Collection implements \Countable{
+class Collection implements \Countable, \ArrayAccess{
 	protected $items = [];
 	protected $validTypes = null;
 
@@ -30,6 +30,10 @@ class Collection implements \Countable{
 		}
 		else
 			return $this->items;
+	}
+
+	public function __get($key){
+		return $this->get($key);
 	}
 
 	public function update($item, $key, $createOnEmpty = false){
@@ -81,5 +85,25 @@ class Collection implements \Countable{
 		}
 
 		return count($items) ? $items[array_rand($items)] : null;
+	}
+
+	public function offsetSet($offset, $value) {
+		if (is_null($offset)) {
+			$this->items[] = $value;
+		} else {
+			$this->items[$offset] = $value;
+		}
+	}
+
+	public function offsetExists($offset) {
+		return isset($this->items[$offset]);
+	}
+
+	public function offsetUnset($offset) {
+		unset($this->items[$offset]);
+	}
+
+	public function offsetGet($offset) {
+		return isset($this->items[$offset]) ? $this->items[$offset] : null;
 	}
 }

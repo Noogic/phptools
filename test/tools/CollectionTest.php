@@ -168,4 +168,8 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 		$basic = $this->collection->first();
 		$this->assertNull($basic);
 	}
+
+	public function test_Collection_can_be_used_as_an_array(){
+		$this->assertSame($this->items['a'], $this->itemsCollection['a']);
+	}
 }
