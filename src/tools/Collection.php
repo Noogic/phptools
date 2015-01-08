@@ -32,10 +32,6 @@ class Collection implements \Countable, \ArrayAccess{
 			return $this->items;
 	}
 
-	public function __get($key){
-		return $this->get($key);
-	}
-
 	public function update($item, $key, $createOnEmpty = false){
 		if(array_key_exists($key, $this->items) OR $createOnEmpty)
 			$this->items[$key] = $item;
@@ -61,7 +57,7 @@ class Collection implements \Countable, \ArrayAccess{
 
 	public function each($fn){
 		foreach($this->items as $key => $value){
-			$fn($key, $value);
+			$fn($value, $key);
 		}
 	}
 

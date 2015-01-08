@@ -156,7 +156,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function test_Collection_hash_each_lambda(){
-		$this->itemsCollection->each(function($key, $value){
+		$this->itemsCollection->each(function($value){
 			$this->assertInstanceOf('\noogic\mocks\basic', $value);
 		});
 	}
