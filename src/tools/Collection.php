@@ -110,27 +110,22 @@ class Collection implements \Countable, \ArrayAccess, \Iterator{
 
 	/** Iterator */
 	public function rewind() {
-		var_dump(__METHOD__);
 		$this->position = 0;
 	}
 
 	public function current() {
-		var_dump(__METHOD__);
 		return $this->items[$this->position];
 	}
 
 	public function key() {
-		var_dump(__METHOD__);
 		return $this->position;
 	}
 
 	public function next() {
-		var_dump(__METHOD__);
-		++$this->position;
+		$this->position++;
 	}
 
 	public function valid() {
-		var_dump(__METHOD__);
 		return isset($this->items[$this->position]);
 	}
 }
