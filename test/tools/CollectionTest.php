@@ -172,4 +172,10 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 	public function test_Collection_can_be_used_as_an_array(){
 		$this->assertSame($this->items['a'], $this->itemsCollection['a']);
 	}
+
+	public function test_Collection_is_iterable(){
+		foreach($this->collection as $key => $value){
+			$this->assertSame($this->items[$key], $value);
+		}
+	}
 }

@@ -2,9 +2,10 @@
 namespace noogic\tools;
 
 
-class Collection implements \Countable, \ArrayAccess{
+class Collection implements \Countable, \ArrayAccess, \Iterator{
 	protected $items = [];
 	protected $validTypes = null;
+	private $position = 0;
 
 	function __construct($collection = null){
 		$this->items = $collection ? $collection->get() : [];
@@ -83,6 +84,8 @@ class Collection implements \Countable, \ArrayAccess{
 		return count($items) ? $items[array_rand($items)] : null;
 	}
 
+
+	/** ArrayAccess */
 	public function offsetSet($offset, $value) {
 		if (is_null($offset)) {
 			$this->items[] = $value;
@@ -101,5 +104,33 @@ class Collection implements \Countable, \ArrayAccess{
 
 	public function offsetGet($offset) {
 		return isset($this->items[$offset]) ? $this->items[$offset] : null;
+	}
+	/**  */
+
+
+	/** Iterator */
+	public function rewind() {
+		var_dump(__METHOD__);
+		$this->position = 0;
+	}
+
+	public function current() {
+		var_dump(__METHOD__);
+		return $this->items[$this->position];
+	}
+
+	public function key() {
+		var_dump(__METHOD__);
+		return $this->position;
+	}
+
+	public function next() {
+		var_dump(__METHOD__);
+		++$this->position;
+	}
+
+	public function valid() {
+		var_dump(__METHOD__);
+		return isset($this->items[$this->position]);
 	}
 }
