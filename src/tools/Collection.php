@@ -5,10 +5,14 @@ namespace noogic\tools;
 class Collection implements \Countable, \ArrayAccess, \Iterator{
 	protected $items = [];
 	protected $validTypes = null;
-	private $position = 0;
 
 	function __construct($collection = null){
-		$this->items = $collection ? $collection->get() : [];
+		if(is_array($collection)){
+			$this->items = $collection;
+		}
+		else if(is_a($collection, 'noogic\tools\Collection')){
+			$this->items = $collection->get();
+		}
 	}
 
 

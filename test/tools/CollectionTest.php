@@ -155,6 +155,12 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 		$this->assertSame($collection->get(), $this->itemsCollection->get());
 	}
 
+	public function test_Collection_can_be_created_with_an_array(){
+		$collection = new Collection($this->items);
+
+		$this->assertSame($this->items, $collection->get());
+	}
+
 	public function test_Collection_hash_each_lambda(){
 		$this->itemsCollection->each(function($value){
 			$this->assertInstanceOf('\noogic\mocks\basic', $value);
