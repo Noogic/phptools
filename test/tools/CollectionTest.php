@@ -184,4 +184,19 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 			$this->assertSame($this->items[$key], $value);
 		}
 	}
+
+	public function test_Collection_can_set_valid_types(){
+		$classType = [get_class($this->collection)];
+		$collection = new Collection(null, $classType);
+		$collectionValidTypes = \PHPUnit_Framework_Assert::readAttribute($collection, 'validTypes');
+
+		$this->assertEquals($collectionValidTypes, $classType);
+
+		$this->setExpectedException('\InvalidArgumentException', 'Item must be an object because there are object type restrictions');
+		$collection->add([]);
+
+		$this->setExpectedException('\InvalidArgumentException', 'Item type is not valid');
+		$obj = json_decode(json_encode([]));
+		$this->collection->add($obj);
+	}
 }

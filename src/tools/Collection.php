@@ -6,17 +6,23 @@ class Collection implements \Countable, \ArrayAccess, \Iterator{
 	protected $items = [];
 	protected $validTypes = null;
 
-	function __construct($collection = null){
+	function __construct($collection = null, $validTypes = null){
 		if(is_array($collection)){
 			$this->items = $collection;
 		}
 		else if(is_a($collection, 'noogic\tools\Collection')){
 			$this->items = $collection->get();
 		}
+
+		if($validTypes){
+			$this->setValidTypes($validTypes);
+		}
 	}
 
 
 	public function add($item, $key = null, $updateOnDuplicate = false){
+		$this->validateItemType($item);
+
 		if($key === null)
 			$this->items[] = $item;
 		else {
@@ -88,6 +94,27 @@ class Collection implements \Countable, \ArrayAccess, \Iterator{
 		return count($items) ? $items[array_rand($items)] : null;
 	}
 
+	private function setValidTypes($validTypes){
+		if(!is_array($validTypes))
+			throw new \InvalidArgumentException("Valid types must be an array");
+
+		$this->validTypes = $validTypes;
+	}
+
+	protected function validateItemType($item){
+		$validTypes = $this->validTypes;
+
+		if($validTypes){
+			if(!is_object($item))
+				throw new \InvalidArgumentException('Item must be an object because there are object type restrictions');
+
+			$objectType = get_class($item);
+			$type_is_invalid = !in_array($objectType, $validTypes);
+
+			if($type_is_invalid)
+				throw new \InvalidArgumentException('Item type is not valid');
+		}
+	}
 
 	/** ArrayAccess */
 	public function offsetSet($offset, $value) {
