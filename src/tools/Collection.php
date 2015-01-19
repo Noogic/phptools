@@ -2,6 +2,8 @@
 namespace noogic\tools;
 
 
+use SebastianBergmann\Exporter\Exception;
+
 class Collection implements \Countable, \ArrayAccess, \Iterator{
 	protected $items = [];
 	protected $validTypes = null;
@@ -20,8 +22,11 @@ class Collection implements \Countable, \ArrayAccess, \Iterator{
 	}
 
 
-	public function add($item, $key = null, $updateOnDuplicate = false){
+	public function add($item, $key = null, $updateOnDuplicate = false, $allowNull = true){
 		$this->validateItemType($item);
+
+		if(!$item AND !$allowNull)
+			return ;
 
 		if($key === null)
 			$this->items[] = $item;
@@ -32,6 +37,7 @@ class Collection implements \Countable, \ArrayAccess, \Iterator{
 			$this->items[$key] = $item;
 		}
 	}
+
 
 	public function get($key = null){
 		if($key !== null){
@@ -114,6 +120,29 @@ class Collection implements \Countable, \ArrayAccess, \Iterator{
 			if($type_is_invalid)
 				throw new \InvalidArgumentException('Item type is not valid');
 		}
+	}
+
+	public static function compare($collections){
+		if(!is_array($collections))
+			throw new \InvalidArgumentException("Collections must be an array");
+
+		$minimumComparableCollections = 2;
+		$numberOfCollections = count($collections);
+
+		if($numberOfCollections < $minimumComparableCollections)
+			throw new \InvalidArgumentException("You need at least two collection to compare them");
+
+		$currentCollection = array_shift($collections);
+
+		foreach($collections as $collection){
+			if($collection != $currentCollection){
+				return false;
+			}
+
+			$currentCollection = $collection;
+		}
+
+		return true;
 	}
 
 	/** ArrayAccess */

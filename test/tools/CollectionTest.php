@@ -199,4 +199,42 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 		$obj = json_decode(json_encode([]));
 		$this->collection->add($obj);
 	}
+
+	public function test_Collection_can_be_compared_to_another_collection(){
+		$collections[] = new Collection();
+		$collections[0]->add('a');
+
+		$collections[] = new Collection();
+		$collections[1]->add('a');
+
+		$this->assertTrue(Collection::compare($collections));
+	}
+
+	public function test_Collection_is_found_in_array_of_collections(){
+		$collections = new Collection();
+
+		$collections[] = new Collection();
+		$collections[0]->add('a');
+
+		$collections[] = new Collection();
+		$collections[1]->add('b');
+
+		$finalCollection = new Collection('b');
+	}
+
+	public function test_Collection_adds_null_values(){
+		$collection = new Collection();
+
+		$collection[] = null;
+
+		$this->assertCount(1, $collection);
+		$this->assertEquals(null, $collection[0]);
+	}
+
+	public function test_Collection_is_able_to_not_allow_null_values(){
+		$collection = new Collection();
+		$collection->add(null, null, false, false);
+
+		$this->assertCount(0, $collection);
+	}
 }
