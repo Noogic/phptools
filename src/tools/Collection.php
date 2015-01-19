@@ -114,10 +114,15 @@ class Collection implements \Countable, \ArrayAccess, \Iterator{
 			if(!is_object($item))
 				throw new \InvalidArgumentException('Item must be an object because there are object type restrictions');
 
-			$objectType = get_class($item);
-			$type_is_invalid = !in_array($objectType, $validTypes);
+			$isValid = false;
+			foreach ($this->validTypes as $validType) {
+				if(is_a($item, $validType)) {
+					$isValid = true;
+					break;
+				}
+			}
 
-			if($type_is_invalid)
+			if(!$isValid)
 				throw new \InvalidArgumentException('Item type is not valid');
 		}
 	}
