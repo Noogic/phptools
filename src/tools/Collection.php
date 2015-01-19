@@ -2,17 +2,17 @@
 namespace noogic\tools;
 
 
-use SebastianBergmann\Exporter\Exception;
-
 class Collection implements \Countable, \ArrayAccess, \Iterator{
 	protected $items = [];
 	protected $validTypes = null;
+
+	const COLLECTION_CLASS = 'noogic\tools\Collection';
 
 	function __construct($collection = null, $validTypes = null){
 		if(is_array($collection)){
 			$this->items = $collection;
 		}
-		else if(is_a($collection, 'noogic\tools\Collection')){
+		else if(is_a($collection, self::COLLECTION_CLASS)){
 			$this->items = $collection->get();
 		}
 
@@ -102,7 +102,7 @@ class Collection implements \Countable, \ArrayAccess, \Iterator{
 
 	private function setValidTypes($validTypes){
 		if(!is_array($validTypes))
-			throw new \InvalidArgumentException("Valid types must be an array");
+			$validTypes = [$validTypes];
 
 		$this->validTypes = $validTypes;
 	}
