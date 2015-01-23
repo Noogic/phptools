@@ -84,6 +84,17 @@ class Collection implements \Countable, \ArrayAccess, \Iterator{
 		return isset($values[0]) ? $values[0] : null;
 	}
 
+	public function find($looked){
+		$collection = new Collection();
+
+		foreach ($this->items as $key => $value) {
+			if($value == $looked)
+				$collection->add($key);
+		}
+
+		return $collection;
+	}
+
 	public function random(){
 		return $this->items[array_rand($this->items)];
 	}

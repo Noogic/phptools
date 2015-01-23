@@ -237,4 +237,15 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 
 		$this->assertCount(0, $collection);
 	}
+
+	public function test_Collection_can_find_an_element(){
+		$collection = new Collection();
+		$collection->add(1, 'a');
+		$collection->add(2, 'b');
+		$collection->add(2, 'c');
+
+		$expected = ['b', 'c'];
+
+		$this->assertSame($expected, $collection->find(2)->get());
+	}
 }
