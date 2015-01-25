@@ -2,7 +2,6 @@
 namespace noogic\tools;
 
 
-use SebastianBergmann\Exporter\Exception;
 
 class Collection implements \Countable, \ArrayAccess, \Iterator{
 	protected $items = [];
