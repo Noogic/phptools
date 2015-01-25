@@ -219,7 +219,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 		$collections[] = new Collection();
 		$collections[1]->add('b');
 
-		$finalCollection = new Collection('b');
+		//$finalCollection = new Collection('b');
 	}
 
 	public function test_Collection_adds_null_values(){

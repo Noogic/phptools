@@ -2,6 +2,8 @@
 namespace noogic\tools;
 
 
+use SebastianBergmann\Exporter\Exception;
+
 class Collection implements \Countable, \ArrayAccess, \Iterator{
 	protected $items = [];
 	protected $validTypes = null;
@@ -15,6 +17,8 @@ class Collection implements \Countable, \ArrayAccess, \Iterator{
 		else if(is_a($collection, self::COLLECTION_CLASS)){
 			$this->items = $collection->get();
 		}
+		else if($collection)
+			throw new \InvalidArgumentException("Provided collection must be an array or a collection");
 
 		if($validTypes){
 			$this->setValidTypes($validTypes);
