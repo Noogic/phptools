@@ -3,7 +3,7 @@ namespace noogic\tools;
 
 
 
-class Collection implements \Countable, \ArrayAccess, \Iterator{
+class Collection implements \Countable, \ArrayAccess, \IteratorAggregate{
 	protected $items = [];
 	protected $validTypes = null;
 
@@ -188,23 +188,7 @@ class Collection implements \Countable, \ArrayAccess, \Iterator{
 
 
 	/** Iterator */
-	public function rewind() {
-		reset($this->items);
-	}
-
-	public function current() {
-		return current($this->items);
-	}
-
-	public function key() {
-		return key($this->items);
-	}
-
-	public function next() {
-		next($this->items);
-	}
-
-	public function valid() {
-		return key($this->items) !== null;
+	public function getIterator(){
+		return new \ArrayIterator($this->items);
 	}
 }
