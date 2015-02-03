@@ -175,6 +175,21 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 		$this->assertNull($basic);
 	}
 
+	public function test_Collection_gives_last_element(){
+		$collection = new Collection();
+
+		$this->assertNull($collection->last());
+
+		$collection->add(1, 'a');
+		$this->assertEquals(1, $collection->last());
+
+		$collection->add(2, 'b');
+		$this->assertEquals(2, $collection->last());
+
+		$collection->add(3, 'c');
+		$this->assertEquals(3, $collection->last());
+	}
+
 	public function test_Collection_can_be_used_as_an_array(){
 		$this->assertSame($this->items['a'], $this->itemsCollection['a']);
 	}

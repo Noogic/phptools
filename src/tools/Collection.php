@@ -87,6 +87,14 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate{
 		return isset($values[0]) ? $values[0] : null;
 	}
 
+	public function last(){
+		$values = array_values($this->items);
+		end($values);
+		$key = key($values);
+
+		return isset($values[$key]) ? $values[$key] :  null;
+	}
+
 	public function find($looked){
 		$collection = new Collection();
 
