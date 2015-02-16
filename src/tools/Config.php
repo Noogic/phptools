@@ -10,13 +10,11 @@ class Config {
 
 
 	function __construct($path = null){
-		if($path)
-			$this->_path = $path;
-		else
-			$this->setPath();
-
-		if($this->_path)
+		if($path) {
+			$this->_path = defined('_ROOTPATH_') ? _ROOTPATH_ . '/config/' . $path : $path;
 			$this->loadFromFile();
+		}
+
 	}
 
 	protected function setPath(){
