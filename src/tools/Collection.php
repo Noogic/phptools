@@ -2,7 +2,6 @@
 namespace noogic\tools;
 
 
-
 class Collection implements \Countable, \ArrayAccess, \IteratorAggregate{
 	protected $items = [];
 	protected $validTypes = null;

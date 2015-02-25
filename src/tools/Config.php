@@ -17,7 +17,7 @@ class Config {
 
 	}
 
-	protected function setPath(){
+	public function setPath(){
 		$this->_path = null;
 	}
 	/**
